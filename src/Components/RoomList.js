@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import * as firebase from "firebase";
-import { Form, Text } from "react-form";
 
 class RoomList extends Component {
   constructor(props) {
@@ -26,6 +25,7 @@ class RoomList extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    e.target.reset();
   }
 
   createRoom() {
@@ -46,7 +46,7 @@ class RoomList extends Component {
             ))}
           </tbody>
         </table>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit.bind(this)}>
           <label>
             Room Name:
             <input
