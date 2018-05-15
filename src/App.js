@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import * as firebase from 'firebase';
-import logo from './logo.svg';
 import RoomList from './Components/RoomList.js'
 import './App.css';
 
@@ -22,7 +21,7 @@ class App extends Component {
           <h1 className="chat-title">Welcome to Bloc Chat</h1>
         </header>
         <RoomList
-            firebase={firebase}/>  
+            firebase={firebase}/>
       </div>
     );
   }
