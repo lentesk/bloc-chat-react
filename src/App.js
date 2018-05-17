@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import * as firebase from 'firebase';
 import RoomList from './Components/RoomList.js'
+import MessageList from './Components/MessageList.js'
 import './App.css';
 
 var config = {
@@ -14,14 +15,42 @@ var config = {
   firebase.initializeApp(config);
 
 class App extends Component {
+  constructor(props){
+    super(props)
+
+    this.state = {
+      activeRoom: '',
+    };
+  }
+
+  setActiveRoom(room) {
+    this.setState({activeRoom: room})
+    console.log(room);
+  }
+
+
   render() {
+    const displayMessages = this.state.activeRoom;
+
     return (
       <div className="App">
         <header className="chat-header">
           <h1 className="chat-title">Welcome to Bloc Chat</h1>
         </header>
+        <aside className="room-list">
         <RoomList
-            firebase={firebase}/>
+            firebase={firebase} activeRoom={this.setActiveRoom.bind(this)} />
+        </aside>
+        <div>
+          <main className="active-room">
+            <h2>{this.state.activeRoom.name}</h2>
+            {displayMessages ?
+
+              (<MessageList
+                firebase={firebase} activeRoom={this.state.activeRoom.key}/>)
+              : (null)}
+          </main>
+       </div>
       </div>
     );
   }

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import * as firebase from "firebase";
-import { Form, Text } from "react-form";
 
 class RoomList extends Component {
   constructor(props) {
@@ -26,6 +25,7 @@ class RoomList extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    e.target.reset();
   }
 
   createRoom() {
@@ -34,35 +34,41 @@ class RoomList extends Component {
     });
   }
 
+  selectRoom(key) {
+    this.props.activeRoom(key);
+  }
+
   render() {
     return (
       <section className="rooms">
-        <table>
-          <tbody>
-            {this.state.rooms.map((rooms, index) => (
-              <tr className="room" key={index}>
-                <td>{rooms.name}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Room Name:
+        <ul>
+          {this.state.rooms.map(rooms => {
+            return (
+              <div key={rooms.key} onClick={e => this.selectRoom(rooms, e)}>
+                {" "}
+                {rooms.name}{" "}
+              </div>
+            );
+          })}
+
+          <form onSubmit={this.handleSubmit.bind(this)}>
+            <label>
+              Room Name:
+              <input
+                type="text"
+                name="newroom"
+                placeholder="New Room"
+                value={this.state.newRoom}
+                onChange={e => this.handleChange(e)}
+              />
+            </label>
             <input
-              type="text"
-              name="newroom"
-              placeholder="New Room"
-              value={this.state.newRoom}
-              onChange={e => this.handleChange(e)}
+              type="submit"
+              onClick={() => this.createRoom()}
+              value="Add Room"
             />
-          </label>
-          <input
-            type="submit"
-            onClick={() => this.createRoom()}
-            value="Add Room"
-          />
-        </form>
+          </form>
+        </ul>
       </section>
     );
   }
