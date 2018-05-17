@@ -34,9 +34,14 @@ class RoomList extends Component {
     });
   }
 
+  selectRoom(key) {
+    this.props.activeRoom(key);
+  }
+
   render() {
     return (
       <section className="rooms">
+<<<<<<< HEAD
         <table>
           <tbody>
             {this.state.rooms.map((rooms, index) => (
@@ -49,20 +54,36 @@ class RoomList extends Component {
         <form onSubmit={this.handleSubmit.bind(this)}>
           <label>
             Room Name:
+=======
+        <ul>
+          {this.state.rooms.map(rooms => {
+            return (
+              <div key={rooms.key} onClick={e => this.selectRoom(rooms, e)}>
+                {" "}
+                {rooms.name}{" "}
+              </div>
+            );
+          })}
+
+          <form onSubmit={this.handleSubmit.bind(this)}>
+            <label>
+              Room Name:
+              <input
+                type="text"
+                name="newroom"
+                placeholder="New Room"
+                value={this.state.newRoom}
+                onChange={e => this.handleChange(e)}
+              />
+            </label>
+>>>>>>> list-messages
             <input
-              type="text"
-              name="newroom"
-              placeholder="New Room"
-              value={this.state.newRoom}
-              onChange={e => this.handleChange(e)}
+              type="submit"
+              onClick={() => this.createRoom()}
+              value="Add Room"
             />
-          </label>
-          <input
-            type="submit"
-            onClick={() => this.createRoom()}
-            value="Add Room"
-          />
-        </form>
+          </form>
+        </ul>
       </section>
     );
   }
