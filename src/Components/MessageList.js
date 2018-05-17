@@ -34,7 +34,7 @@ class MessageList extends Component {
       .map(message => {
         return (
           <li className="current-message" key={message.key}>
-            {message.content}
+            {message.username}: {message.content} {message.sentAt} 
           </li>
         );
       });
