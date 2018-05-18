@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import * as firebase from "firebase";
 
 class RoomList extends Component {
   constructor(props) {
@@ -41,20 +40,6 @@ class RoomList extends Component {
   render() {
     return (
       <section className="rooms">
-<<<<<<< HEAD
-        <table>
-          <tbody>
-            {this.state.rooms.map((rooms, index) => (
-              <tr className="room" key={index}>
-                <td>{rooms.name}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        <form onSubmit={this.handleSubmit.bind(this)}>
-          <label>
-            Room Name:
-=======
         <ul>
           {this.state.rooms.map(rooms => {
             return (
@@ -76,7 +61,6 @@ class RoomList extends Component {
                 onChange={e => this.handleChange(e)}
               />
             </label>
->>>>>>> list-messages
             <input
               type="submit"
               onClick={() => this.createRoom()}
