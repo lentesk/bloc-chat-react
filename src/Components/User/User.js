@@ -13,7 +13,6 @@ class User extends Component {
       .auth()
       .signInWithPopup(provider)
       .then(result => {
-        console.log;
         const user = result.user;
         this.props.setUser(user);
       });

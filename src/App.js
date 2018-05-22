@@ -21,8 +21,8 @@ class App extends Component {
 
     this.state = {
       activeRoom: "",
-      user: null
-    };
+      user: null,
+        };
   }
 
   setActiveRoom(room) {
@@ -57,6 +57,8 @@ class App extends Component {
               <MessageList
                 firebase={firebase}
                 activeRoom={this.state.activeRoom.key}
+                username={this.state.user === null ? "Guest" : this.state.user.displayName}
+                user={activeUser}
               />
             ) : null}
           </main>
