@@ -20,8 +20,10 @@ class MessageList extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    e.target.reset();
-  }
+    if (!this.setState.newMessage) {
+     this.setState({newMessage: ' '});
+   }};
+
 
   createMessage(e) {
     this.messagesRef.push({
